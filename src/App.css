@@ -1,0 +1,80 @@
+.app {
+  min-height: 100vh;
+  background: transparent;
+  color: #ffffff;
+}
+
+.app-bar {
+  background: linear-gradient(135deg, #1DB954 0%, #191414 100%) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.app-container {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.stat-card {
+  flex: 1;
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(26, 26, 46, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(29, 185, 84, 0.3);
+}
+
+.broadcast-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  height: 100%;
+}
+
+.broadcast-button {
+  background: rgba(29, 185, 84, 0.1);
+  border: 2px solid #1DB954;
+  color: #1DB954;
+  transition: all 0.3s ease;
+  width: 80px;
+  height: 80px;
+}
+
+.broadcast-button:hover {
+  background: #1DB954;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(29, 185, 84, 0.4);
+}
+
+.device-manager-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  height: fit-content;
+}
+
+.playback-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.search-card {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 960px) {
+  .stat-card {
+    margin-bottom: 8px;
+  }
+}
