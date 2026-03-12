@@ -10,8 +10,25 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import AlbumIcon from '@mui/icons-material/Album';
+import { useEffect } from 'react';
 
 function PlaybackControls({ device, onSendCommand }) {
+  // Log when device prop changes
+  useEffect(() => {
+    if (!device) {
+      return;
+    }
+
+    console.log('[Brainiak] PlaybackControls device updated:', {
+      name: device.name,
+      isPlaying: device.isPlaying,
+      hasTrack: !!device.currentTrack,
+      track: device.currentTrack,
+      volume: device.volume,
+      online: device.online
+    });
+  }, [device]);
+
   if (!device) return null;
 
   const getVolumeIcon = (volume) => {
@@ -99,6 +116,9 @@ function PlaybackControls({ device, onSendCommand }) {
             <Typography variant="body2" color="text.secondary">
               No track currently playing
             </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+              Open Spotify and start playing music
+            </Typography>
           </Box>
         )}
 
@@ -119,7 +139,10 @@ function PlaybackControls({ device, onSendCommand }) {
           </Box>
           <Slider
             defaultValue={device.volume || 50}
-            onChangeCommitted={(e, value) => onSendCommand({ action: 'set_volume', params: { volume: value } })}
+            onChangeCommitted={(e, value) => {
+              console.log('[Brainiak] Volume set to:', value);
+              onSendCommand({ action: 'set_volume', params: { volume: value } });
+            }}
             valueLabelDisplay="auto"
             min={0}
             max={100}
@@ -136,7 +159,10 @@ function PlaybackControls({ device, onSendCommand }) {
           <Button
             variant="outlined"
             size="large"
-            onClick={() => onSendCommand({ action: 'previous' })}
+            onClick={() => {
+              console.log('[Brainiak] Previous button clicked');
+              onSendCommand({ action: 'previous' });
+            }}
             sx={{ minWidth: 120, borderRadius: 3 }}
           >
             <SkipPreviousIcon sx={{ mr: 1 }} />
@@ -147,7 +173,10 @@ function PlaybackControls({ device, onSendCommand }) {
             variant="contained"
             size="large"
             color={device.isPlaying ? 'warning' : 'success'}
-            onClick={() => onSendCommand({ action: device.isPlaying ? 'pause' : 'play' })}
+            onClick={() => {
+              console.log('[Brainiak] Play/Pause clicked, current state:', device.isPlaying);
+              onSendCommand({ action: device.isPlaying ? 'pause' : 'play' });
+            }}
             sx={{ 
               minWidth: 140, 
               borderRadius: 3,
@@ -164,7 +193,10 @@ function PlaybackControls({ device, onSendCommand }) {
           <Button
             variant="outlined"
             size="large"
-            onClick={() => onSendCommand({ action: 'next' })}
+            onClick={() => {
+              console.log('[Brainiak] Next button clicked');
+              onSendCommand({ action: 'next' });
+            }}
             sx={{ minWidth: 120, borderRadius: 3 }}
           >
             Next
